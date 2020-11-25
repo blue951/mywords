@@ -1,0 +1,91 @@
+查看当前jquery的版本号：
+$.fn.jquery
+
+常用函数详细定义：
+1.	splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。
+2.	slice()	从某个已有的数组返回选定的元素
+3.	$.map() 函数用于使用指定函数处理数组中的每个元素(或对象的每个属性)，并将处理结果封装为新的数组返回。注意：1. 在jQuery 1.6 之前，该函数只支持遍历数组；从 1.6 开始，该函数也支持遍历对象。
+4.	call() apply() bind()
+var name = "王",age = 18;
+var obj = {
+	name: "李",
+	objAge: this.age,
+	myFun: function(fm,to){
+		console.log(this.name + "年龄" + this.age, "来自" + fm + "去" + to);
+	}
+}
+var db = {
+	name: "江",
+	age: 89
+}
+
+obj.myFun.call(db,'北京','上海');
+obj.myFun.apply(db,['北京','上海']);
+obj.myFun.bind(db,'北京','上海')();
+call 、bind 、 apply 这三个函数的第一个参数都是 this 的指向对象，bind 除了返回是函数以外，它 的参数和 call 一样。
+
+5.	比较2个数组或对象的值是否相等： 依赖jquery
+function equal(a, b) {
+		var objectReferences = [];
+		
+		function doIt(a, b) {
+			var i, keys, type = $.type(a);
+			
+			if (type === "array") {
+				if ($.type(b) !== "array") {
+					return false;
+				}
+				if (a.length !== b.length) {
+					return false;
+				}
+				for (i = 0; i < a.length; ++i) {
+					if (!doIt(a[i], b[i])) {
+						return false;
+					}
+				}
+				return true;
+			}
+			
+			if (type === "object" && $.inArray(a, objectReferences) < 0) {
+				if ($.type(b) !== "object") {
+					return false;
+				}
+				
+				if ($.inArray(b, objectReferences) >= 0) {
+					return a === b;
+				}
+				
+				objectReferences.push(a);
+				objectReferences.push(b);
+				
+				keys = {};
+				for (i in a) {
+					if (!doIt(a[i], b[i])) {
+						return false;
+					}
+					keys[i] = true;
+				}
+				for (i in b) {
+					if (!keys[i]) {
+						return false;
+					}
+				}
+				return true;
+			}
+			
+			return a === b;
+		}
+		
+		return doIt(a, b);
+	}
+	注意：obj必须声明，否则返回-1，因为都写成{a:1}是2个引用不同的对象。
+	var obj = {a:1};
+	var arr = [1,2,3,obj,'aaa']; 
+	$.inArray(obj,arr);
+	
+6.		
+	function assigned(x) {
+		return x || x === 0 || x === "";
+	}	
+	
+	
