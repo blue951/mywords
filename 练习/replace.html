@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js replace方法</title>
+</head>
+<body>
+    <script>
+        // console.log("aa123---</>".replace(/[0-9]+/,$1));    
+        // var name = "Doe   ,   John";
+        // var res = name.replace(/(\w+)\s*, \s*(\w+)/, "$2 $1");
+
+        var name = '"aaa·‘a", "b"';
+        console.log(/"([^"]*)"/g.exec(name),RegExp.$1);
+        // var res = name.replace(/"([^"]*)"/g, "-$1+");
+
+        // var name = 'aaa bbb ccc';
+        // var res = name.replace(/\b\w+\b/g, function(word){ // \b是匹配单词边界
+        //     return word.substring(0,1).toUpperCase()+word.substring(1);}
+        // );
+        // console.log(res);
+    </script>
+
+    <pre>
+        var name = '"aaa·‘a", "b"';
+        console.log(/"([^"]*)"/g.exec(name),RegExp.$1);
+        
+        $1、$2、...、$99	与 regexp 中的第 1 到第 99 个子表达式相匹配的文本。
+        $&	与 regexp 相匹配的子串。
+        $`	位于匹配子串左侧的文本。
+        $'	位于匹配子串右侧的文本。
+        $$	直接量符号。
+    </pre>
+</body>
+</html>

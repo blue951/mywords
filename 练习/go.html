@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>text走马灯效果</title>
+    <style>
+        body{
+            color:#fff;
+            background: #000;
+        }
+        #container{
+            width: 200px;
+            padding: 10px;
+            margin:100px auto;
+            box-shadow: inset;
+            border: 1px #ccc solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        function go(str){
+            var arr = str.split('');
+            arr.push(arr.shift());
+            str = arr.join('');
+            console.log(str);
+            document.getElementById('container').innerHTML = str;
+            setTimeout(function(){
+                go(str);
+            },1000);
+        } 
+        go("我们的国歌是起来。");   
+    </script>
+</body>
+</html>

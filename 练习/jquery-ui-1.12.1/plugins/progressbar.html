@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>progressbar</title>	
+    <script src="../external/jquery/jquery.js"></script>
+    <script src="../jquery-ui.js"></script>
+    <script src="./jquery.xx.progressbar.js"></script>
+    <style>
+        .bar{
+            width:200px;
+            height: 20px;
+            background:#eee;
+        }
+        .bar>div{
+            height: 20px;
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var bar = $( "<div class='bar'></div>" )
+            .appendTo( "body" )
+            .progressbar({
+                complete: function( event, data ) {
+                    alert( "回调函数调用成功" );
+                }
+            })
+            .bind( "progressbarcomplete", function( event, data ) {
+                alert( "progress bar的值是：" + data.value );
+            });
+        
+        bar.progressbar( "option", "value", 50 );
+</script>
+</body>
+</html>

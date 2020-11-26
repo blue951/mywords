@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>年前工时 - 详情 - Wing_CS - Redmine</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>控制ajax执行reject函数</title>
+<script src="../jquery-1.8.3.min.js"></script>
+</head>
+<body>
+    <div id="alert_dialog">
+		<h2 id="alert_title"></h2> 
+		<p id="alert_msg"></p>
+		<button type="button" id="alert_close" class="info_close"></button>
+	</div>
+    
+    <script>
+
+        function getSettingFileExport(filename) {
+            var dfr  = $.Deferred();
+            $.ajax({
+                type : 'post',
+                url : filename,
+                contentType: 'application/JSON',
+                dataType : 'JSON',
+                scriptCharset: 'utf-8',
+            }).done(function(data){
+                    dfr.resolve(data);
+            }).fail(function(data, text, errorStrings) {
+                if (data.status == 0) {
+                    getSettingFileExport(filename)
+                    .done(function(data){dfr.resolve(data);})
+                    .fail(dfr.reject)
+                }else{
+                    console.log("fail else execed");
+                    dfr.reject();
+                }
+            });
+            return dfr.promise();
+        };
+
+        getSettingFileExport("commonSettings.js");
+    </script>
+</body>
+</html>

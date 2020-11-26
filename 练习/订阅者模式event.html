@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**全局发布订阅对象 */
+        // 避免不断的创建发布对象和缓存列表，节约空间；形成一个中介，发布者和订阅者之间解耦
+        // var Event = (function(){
+        //     var clientList = {},
+        //         listen,
+        //         trigger,
+        //         remove;
+            
+        //     listen = function(key,fn){
+        //         if(!clientList[key]){
+        //             clientList[key] = [];
+        //         }
+        //         clientList[key].push(fn);
+        //     };
+        //     trigger = function(){
+            //arguments对象不是一个 Array 。它类似于Array，但除了length属性和索引元素之外没有任何Array属性。例如，它没有 pop 方法。但是它可以被转换为一个真正的Array
+        //         var argu = Array.prototype.slice.call(arguments,0),
+        //             key = argu[0];
+        //             fns = clientList[key];
+        //         if(!fns || fns.length == 0){
+        //             return false;
+        //         }
+        //         for(var i=0;i<fns.length;i++){
+        //             fns[i].apply(this,argu.slice(1));
+        //         }
+        //     };
+        //     remove = function(key,fn){
+        //         var fns = clientList[key];
+        //         if(!fns){
+        //             return false;
+        //         }
+        //         if(!fn){
+        //             fns && (fns.length=0);
+        //         }else{
+        //             for(var j=fns.length-1;j>=0;j--){
+        //                 if(fn===fns[j]){
+        //                     fns.splice(j,1);
+        //                 }
+        //             }
+        //         }
+        //     };
+        
+        //     return {
+        //         listen: listen,
+        //         trigger: trigger,
+        //         remove: remove
+        //     }
+        // })()
+        
+
+        var Event = (function(){
+            var listenList = {};
+            function listen(key,fn){
+                if(!listenList[key]){
+                    listenList[key] = [];
+                }
+                listenList[key].push(fn);
+            }
+
+            function trigger(){
+                var argus = Array.slice.call(this,arguments,0);
+            }
+
+            function remove(){
+
+            }
+
+            return {
+                listen: listen,
+                trigger: trigger,
+                remove: remove
+            };
+        }());
+
+        //测试
+        Event.listen('square88',fn1 = function(price){
+            console.log('价格为：'+ price);
+        })//小明的订阅
+        
+        Event.listen('square110',fn2 = function(price){
+            console.log("price="+ price);
+        })//小红的订阅
+        
+        // Event.listen('square88',fn3 = function(price){
+        //     console.log('面积为：'+ '88');
+        // })
+        
+        Event.trigger('square88',1000000);
+        Event.trigger('square110',3000000);
+        
+        // Event.remove('square110',fn2);
+        // Event.trigger('square110',3000000);    
+    </script>
+    <pre>
+        /**全局发布订阅对象 */
+        // 避免不断的创建发布对象和缓存列表，节约空间；形成一个中介，发布者和订阅者之间解耦
+        var Event = (function(){
+            var clientList = {},
+                listen,
+                trigger,
+                remove;
+            
+            listen = function(key,fn){
+                if(!clientList[key]){
+                    clientList[key] = [];
+                }
+                clientList[key].push(fn);
+            };
+            trigger = function(){
+                var argu = Array.prototype.slice.call(arguments,0),
+                    key = argu[0];
+                    fns = clientList[key];
+                if(!fns || fns.length == 0){
+                    return false;
+                }
+                for(var i=0;i<fns.length;i++){
+                    fns[i].apply(this,argu.slice(1));
+                }
+            };
+            remove = function(key,fn){
+                var fns = clientList[key];
+                if(!fns){
+                    return false;
+                }
+                if(!fn){
+                    fns && (fns.length=0);
+                }else{
+                    for(var j=fns.length-1;j>=0;j--){
+                        if(fn===fns[j]){
+                            fns.splice(j,1);
+                        }
+                    }
+                }
+            };
+        
+            return {
+                listen: listen,
+                trigger: trigger,
+                remove: remove
+            }
+        })()
+        
+        //测试
+        Event.listen('square88',fn1 = function(price){
+            console.log('价格为：'+ price);
+        })//小明的订阅
+        
+        Event.listen('square110',fn2 = function(price){
+            console.log("price="+ price);
+        })//小红的订阅
+        
+        Event.listen('square88',fn3 = function(price){
+            console.log('面积为：'+ '88');
+        })
+        
+        Event.trigger('square88',1000000);
+        Event.trigger('square110',3000000);
+        
+        Event.remove('square110',fn2);
+        Event.trigger('square110',3000000);
+    </pre>
+</body>
+</html>

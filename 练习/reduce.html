@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>reduce函数的2种作用</title>
+</head>
+<body>
+    <script>
+      function func1(a) {
+        return a*10;
+      }
+
+      function func2(b) {
+        return b*2
+      }
+
+      function func3(c) {
+        return c/2;
+      }
+      const compose = (...func) => (...init) => {
+          if(func.length >= 2){
+            return func.reduce((prev, curr)=>{
+               prev = curr(prev)
+               return prev;
+            }, ...init)
+          }
+          return func(...init);
+      }
+
+      const a1 = compose(func1,func2)(2);
+      console.log(a1) //40
+
+      var arr = [1,2,3];
+      var num = arr.reduce((prev,curr) =>  prev * curr,2);
+      console.log(num);
+
+      function composeFn() {
+	      var fns = [].slice.call(arguments)
+	      return function (initialArg) {
+		      var res = initialArg
+		      for (var i = fns.length - 1; i > -1; i--) {
+			      res = fns[i](res)
+		      }
+		      return res
+	      }
+      }
+      var b = composeFn(func1,func2)(2);
+      console.log("composeFn",b);
+    </script>
+
+    <pre>
+        function func1(a) {
+            return a*10;
+          }
+    
+          function func2(b) {
+            return b*2
+          }
+    
+          function func3(c) {
+            return c/2;
+          }
+          const compose = (...func) => (...init) => {
+              if(func.length >= 2){
+                return func.reduce((prev, curr)=>{
+                   prev = curr(prev)
+                   return prev;
+                }, ...init)
+              }
+              return func(...init);
+          }
+          //reduce用于函数的compose
+          const a1 = compose(func1,func2)(2);
+          console.log(a1) //40
+    
+          //reduce作为累加器使用
+          var arr = [1,2,3];
+          var num = arr.reduce((prev,curr) =>  prev * curr,2);
+          console.log(num);
+
+    </pre>
+</body>
+</html>

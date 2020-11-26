@@ -1,0 +1,56 @@
+<!--
+<html>
+<head>
+    <title>不加return的情况</title>
+    <script>
+        function Login_Click() {
+            if (document.form1.UsName.value == "") {
+                alert('用户名为空');
+            }
+            if (document.form1.UsPwd.value == "") {
+                alert('密码为空');
+            }
+            alert('登陆成功');
+        }
+    </script>
+</head>
+
+<body>
+    <form name="form1">
+        <input type="text" name="UsName">用户名
+        <input type="password" name="UsPwd">密码
+        <input type="button" name="Login" onClick="Login_Click();" value="登陆" />
+    </form>
+</body>
+
+</html>
+-->
+
+
+<html>
+<head>
+    <title>加return</title>
+    <script>
+        function Login_Click() {
+            if (document.form1.UsName.value == "") {
+                alert('用户名为空');
+                return;
+            }
+            if (document.form1.UsPwd.value == "") {
+                alert('密码为空');
+                return;
+            }
+            alert('登陆成功');
+        }
+    </script>
+</head>
+
+<body>
+    <form name="form1">
+        <input type="text" name="UsName">用户名
+        <input type="password" name="UsPwd">密码
+        <input type="button" name="Login" onClick="Login_Click();" value="登陆" />
+    </form>
+</body>
+
+</html>

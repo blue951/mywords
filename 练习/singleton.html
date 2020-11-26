@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单例模式</title>
+</head>
+<body>
+    <script>
+        function SingleTon () {
+            this.instance = null;
+        }
+
+        SingleTon.prototype.getName = function(){
+            console.log('getName');
+        }
+
+        SingleTon.getInstance = function(){
+            if(!this.instance){
+                this.instance = new SingleTon();
+            }
+            return this.instance;
+        }
+
+        var objOne = SingleTon.getInstance();
+        var objTwo = SingleTon.getInstance();
+        console.log(objOne === objTwo);  //true
+        console.log((new SingleTon()).getName()); //getName
+    </script>
+    
+    <pre>
+        function SingleTon () {
+            this.instance = null;
+        }
+
+        SingleTon.getInstance = function(){
+            if(!this.instance){
+                this.instance = new SingleTon();
+            }
+            return this.instance;
+        }
+        
+        SingleTon.prototype.getName = function(){
+            console.log('getName');
+        }
+
+        var objOne = SingleTon.getInstance();
+        var objTwo = SingleTon.getInstance();
+        console.log(objOne === objTwo);  //true
+        console.log((new SingleTon()).getName()); //getName
+    </pre>
+</body>
+</html>

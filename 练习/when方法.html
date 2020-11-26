@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>when方法</title>
+<script src="./jquery-1.8.3.min.js"></script>
+</head>
+<body>
+	
+<script>
+$(function () { 
+	$.when( { testing: 123 } ).done(
+    function(x) { alert(x.testing); } /* alerts "123" */
+    );
+})
+</script>
+ 
+ <pre>
+    $.when() 函数提供一种方法来执行一个或多个对象的回调函数。
+
+    $(function () { 
+        $.when( { testing: 123 } ).done(
+        function(x) { alert(x.testing); } /* alerts "123" */
+        );
+    })
+
+    在多个延迟对象传递给jQuery.when() 的情况下，该方法返回一个新的"宿主"延迟对象，当所有的延迟对 
+    象被受理（resolve）时，该方法才会受理它的宿主延迟对象。当其中有一个延迟对象被拒绝（rejected）时， 
+    该方法就会拒绝它的宿主延迟对象。当宿主对象被受理时，doneCallbacks（受理回调）将被执行。
+    
+    $(function () { 
+        var d1 = $.Deferred();
+        var d2 = $.Deferred();
+        $.when( d1, d2 ).done(function ( v1, v2 ) {
+            alert( v1 ); // "Fish"
+            alert( v2 ); // "Pizza"
+        });
+        d1.resolve( "Fish" );
+        d2.resolve( "Pizza" );
+    })
+
+    如果没有值传递给延迟对象的受理（resolved）事件，那么相应的doneCallback参数 将是undefined。 
+    如果传递给延迟对象的受理（resolved）事件为单个的值， 相应的参数 将保留那个值。 在传递给延迟对象
+    的解决（resolved）事件为为多个值的情况下， 相应的 参数将是这些值组成的数组。
+
+    $(function () { 
+        var d1 = $.Deferred();
+        var d2 = $.Deferred();
+        var d3 = $.Deferred();
+        $.when( d1, d2, d3 ).done(function ( v1, v2, v3 ) {
+            alert( v1 ); // v1 is undefined
+            alert( v2 ); // v2 is "abc"
+            alert( v3 ); // v3 is an array [ 1, 2, 3, 4, 5 ]
+        });
+        d1.resolve();
+        d2.resolve( "abc" );
+        d3.resolve( 1, 2, 3, 4, 5 );
+    })
+ </pre>
+</body>
+</html>

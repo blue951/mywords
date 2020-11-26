@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.8.3.min.js"></script>
+    <script>
+        $(function(){
+            function getData(params){
+                return $.Deferred(function(defer){
+                    setTimeout(function(){
+                        if(params.folder === 1){
+                            defer.resolve({
+                                result: "请求成功",
+                                data: {
+                                    a: 1,
+                                    b: 1
+                                }
+                            });
+                        }else{
+                            defer.reject({
+                                result: "请求失败",
+                                data: {
+                                    a: 0,
+                                    b: 0
+                                }
+                            })
+                        }
+                    },1000)
+                })
+            }
+        
+            
+            getData({folder: 0}).then(function(res){
+                console.log(res);
+            }).fail(function(err){
+                console.log(err);
+            });
+            
+        });
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

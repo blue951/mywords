@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery deferred.promise() 方法</title>
+<script src="./jquery-1.8.3.min.js"></script>
+</head>
+<body>
+	
+<script>
+$(function () { 
+	function asyncEvent(){
+		var dfd = new jQuery.Deferred();
+		// 在一个随机的时间间隔之后 Resolve （解决状态）
+		setTimeout(function(){
+			dfd.resolve("欢呼");
+		}, Math.floor(400+Math.random()*2000));
+		// 在一个随机的时间间隔之后 reject （拒绝状态）
+		setTimeout(function(){
+			dfd.reject("对不起");
+		}, Math.floor(400+Math.random()*2000));
+		// 每半秒显示一个"working..."消息
+		setTimeout(function working(){
+			if ( dfd.state() === "pending" ) {
+				dfd.notify("working... ");
+				setTimeout(working, 500);
+			}
+		}, 1);
+		// 返回 Promise 对象，调用者不能改变延迟对象
+		return dfd.promise();
+	}
+	// 为异步函数附加一个done, fail, 和 progress 处理程序
+	$.when( asyncEvent() ).then(
+		function(status){
+			console.log( status+', 事情进展顺利' );
+		},
+		function(status){
+			console.log( status+', 这次你失败了' );
+		},
+		function(status){
+			$("body").append(status);
+		}
+	);
+})
+</script>
+ 
+ <pre>
+    设定两个延时时间是随机的定时器，分别用于解决（resolve）和拒绝（reject）延迟对象
+
+    $(function () { 
+        function asyncEvent(){
+            var dfd = new jQuery.Deferred();
+            // 在一个随机的时间间隔之后 Resolve （解决状态）
+            setTimeout(function(){
+                dfd.resolve("欢呼");
+            }, Math.floor(400+Math.random()*2000));
+            // 在一个随机的时间间隔之后 reject （拒绝状态）
+            setTimeout(function(){
+                dfd.reject("对不起");
+            }, Math.floor(400+Math.random()*2000));
+            // 每半秒显示一个"working..."消息
+            setTimeout(function working(){
+                if ( dfd.state() === "pending" ) {
+                    dfd.notify("working... ");
+                    setTimeout(working, 500);
+                }
+            }, 1);
+            // 返回 Promise 对象，调用者不能改变延迟对象
+            return dfd.promise();
+        }
+        // 为异步函数附加一个done, fail, 和 progress 处理程序
+        $.when( asyncEvent() ).then(
+            function(status){
+                console.log( status+', 事情进展顺利' );
+            },
+            function(status){
+                console.log( status+', 这次你失败了' );
+            },
+            function(status){
+                $("body").append(status);
+            }
+        );
+    })
+
+
+    //带参数的方法调用
+    $(function () { 
+        // 现有对象
+        var obj = {
+            hello: function( name ) {
+                alert( "Hello " + name );
+            }
+        },
+        // 创建一个延迟 Deferred
+        defer = $.Deferred();
+        // 设置对象作为 promise
+        defer.promise( obj );
+        // Resolve （解决） 该对象
+        defer.resolve( "John" );
+        // 使用该对象作为 Promise
+        obj.done(function( name ) {
+            obj.hello( name ); //将弹出 "Hello John"
+        }).hello( "Karl" ); // 将弹出 "Hello Karl";
+    })
+ </pre>
+</body>
+</html>

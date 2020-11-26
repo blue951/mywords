@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪婪和非贪婪匹配</title>
+</head>
+<body>
+    <pre>
+        var str='aabab'; 
+        var a = str.match(/a(.+)b/); 
+        var b = str.match(/a(.+?)b/);
+        var c = str.match(/a(.+)b/); 
+        var d = str.match(/a(.+?)b/); 
+        console.log(a,b,c,d);   
+
+        i	执行对大小写不敏感的匹配。
+        g	执行全局匹配（查找所有匹配而非在找到第一个匹配后停止）。
+        m	执行多行匹配。
+
+        .	查找单个字符，除了换行和行结束符。
+        \W	查找非单词字符。
+        \D	查找非数字字符。
+        \S	查找非空白字符。
+
+        ^n	匹配任何开头为 n 的字符串。
+        [^adgk]	查找给定集合外的任何字符。
+        ?=n	匹配任何其后紧接指定字符串 n 的字符串。
+        ?!n	匹配任何其后没有紧接指定字符串 n 的字符串。
+
+        n+	匹配任何包含至少一个 n 的字符串。   >=1     个
+        n*	匹配任何包含零个或多个 n 的字符串。 >=0     个
+        n?	匹配任何包含零个或一个 n 的字符串。 0 | 1   个
+        
+        (.+)默认是贪婪匹配
+        (.+?)为惰性匹配
+        /.+b/  //匹配一个或多个任意字符后面跟一个字母b
+    </pre>
+    <script>
+        var str='aabab'; 
+        var a = str.match(/a(.+)b/); 
+        var b = str.match(/a(.+?)b/);
+        var c = str.match(/a(.+)b/); 
+        var d = str.match(/a(.+?)b/); 
+        console.log(a,b,c,d);
+    </script>
+</body>
+</html>

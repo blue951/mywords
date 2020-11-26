@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>then and doen</title>
+    <script src="jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<script>
+    $(function () {
+	    var defer = jQuery.Deferred();
+	    defer.done(function(a,b){
+		    return a * b;
+	    }).done(function( result ) {
+		    console.log("result = " + result);  // 2
+	    }).then(function( a, b ) {
+		    return a * b;
+	    }).done(function( result ) {
+		    console.log("result = " + result); //6
+	    }).then(function( a, b ) {
+		    return a * b;
+	    }).done(function( result ) {
+		    console.log("result = " + result);  //NaN
+	    });
+	    defer.resolve( 2, 3 );
+    });
+</script>
+<pre>
+    $(function () {
+        var defer = jQuery.Deferred();
+        defer.done(function(a,b){
+            return a * b;
+        }).done(function( result ) {
+            console.log("result = " + result);
+        }).then(function( a, b ) {
+            return a * b;
+        }).done(function( result ) {
+            console.log("result = " + result);
+        }).then(function( a, b ) {
+            return a * b;
+        }).done(function( result ) {
+            console.log("result = " + result);
+        });
+        defer.resolve( 2, 3 );
+    });
+</pre>
+</body>
+</html>
