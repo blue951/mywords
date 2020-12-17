@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.pic {
+			display: none;
+			width: 60px;
+			height: 60px;
+			background: red;
+		}
+		.show .pic {
+			display: inline-block;
+			-webkit-animation: keyframes-pic 1.3s infinite linear;
+		}
+
+		@-webkit-keyframes keyframes-pic {
+			0% {
+				-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+			100% {
+				-webkit-transform: rotate(360deg);
+				transform: rotate(360deg);
+			}
+		}
+
+	</style>
+</head>
+<body>
+	<div class="main show">
+		<div class="pic">111</div>
+	</div>
+</body>
+</html>
