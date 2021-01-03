@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+</head>
+<body>
+
+    <p>测试flask接口</p>
+    
+    <script>
+        $(function(){            
+            $.ajax({
+                url:"http://192.168.50.255/list",
+                type:"GET",
+                data:'',
+                contentType:"text/html;charset=utf8",
+                dataType:"json",
+                success:function (resp) {
+                    console.log(111,resp)
+                },
+                error: function(e,a,b){
+                    console.log(e,a,b);
+                }
+            })
+        })
+    </script>
+</body>
+</html>
