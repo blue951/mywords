@@ -1,0 +1,4 @@
+git config --global user.name "用户名" 
+git config --global user.email "用户邮箱"
+
+第一次获取代码后，需要输入 用户名密码 ，然后 执行git config --global credential.helper store
