@@ -1,0 +1,29 @@
+1 安装python2.7.12
+2.安装virtualevn
+    pip install virtualenv
+    创建虚拟环境：virtualenv testvir
+    激活虚拟环境： 进入testVir的scripts目录，运行activate.bat
+    退出虚拟环境： 进入testVir的scripts目录，运行deactivate.bat
+3.安装virtualwrapper-win，可以自动激活当前虚拟环境
+    pip install virtualenvwrapper-win
+    mkvirtualenv testvir2
+    workon 查看当前有几个虚拟环境
+4.查看当前虚拟环境下有哪些安装包
+    workon testvir2
+    pip list    
+5.安装一个新的包
+    pip install requests
+    pip uninstall requests
+        
+6. 创建一个项目，选择virtualenv之后要安装django
+    workon testvir2
+    pip install django==1.9.8
+
+7. 配置0.0.0.0 仍然不能使用本地ip访问，报错如下：
+    Invalid HTTP_HOST header: '192.168.100.5:8000'. You may need to add '192.168.100.5' to ALLOWED_HOSTS
+    原因是需要在setting.py里配置：ALLOWED_HOSTS = ['*']            
+
+8.  配置static路径和apps路径
+9.  ORM连接数据库，配置数据库，安装python-mysql和mysqlclient
+10  model代码创建表结构，命令生产真实的表
+    makemigrations messages
