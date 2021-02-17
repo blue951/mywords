@@ -5,3 +5,7 @@ MxOnline/organization/migrations/
 MxOnline/operation/migrations/
 MxOnline/MxOnline/__pycache__/
 MxOnline/users/__pycache__/
+MxOnline/apps/organization/migrations/
+MxOnline/apps/users/migrations/
+MxOnline/apps/courses/migrations/
+MxOnline/apps/operation/migrations/
