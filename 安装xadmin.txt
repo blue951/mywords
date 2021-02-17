@@ -108,3 +108,17 @@ INSTALLED_APPS = [
 
 FieldDoesNotExist找不到的错误，解决办法：
 except models.FieldDoesNotExist:    ->      except FieldDoesNotExist:
+
+
+
+问题：django.db.migrations.exceptions.NodeNotFoundError，注释下面代码就行
+
+    # dependencies = [
+    #     ('auth', '0012_alter_user_first_name_max_length'),
+    # ]
+
+
+
+通过源代码的方式安装xadmin：
+https://www.jianshu.com/p/139b39902eb5
+https://github.com/blue951/xadmin_bugfix    
