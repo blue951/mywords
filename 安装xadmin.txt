@@ -1,0 +1,110 @@
+pip install git+git://github.com/sshwsfc/xadmin.git 改用下面的速度快
+pip install https://codeload.github.com/sshwsfc/xadmin/zip/django2 -i https://pypi.douban.com/simple/
+
+
+# ImportError: cannot import name 'six'
+# 解决方法
+pip install six
+# 然后找到 Lib\site-packages 下的six.py 复制到 django/utils下面
+# 问题解决
+
+# ImportError: cannot import name 'python_2_unicode_compatible'
+from django.utils.encoding import force_text, python_2_unicode_compatible
+# 改为
+from django.utils.encoding import force_text
+from django.utils.six import python_2_unicode_compatible
+# 问题解决
+
+# ModuleNotFoundError: No module named 'django.contrib.staticfiles.templatetags'
+if 'django.contrib.staticfiles' in settings.INSTALLED_APPS:
+    from django.contrib.staticfiles.templatetags.staticfiles import static
+else:
+    from django.templatetags.static import static
+# 改为
+# if 'django.contrib.staticfiles' in settings.INSTALLED_APPS:
+#     from django.contrib.staticfiles.templatetags.staticfiles import static
+# else:
+from django.templatetags.static import static
+# 问题解决
+
+# TypeError: render() got an unexpected keyword argument 'renderer'
+# 跟随错误提示 django\forms\boundfield.py
+        return widget.render(
+            name=self.html_initial_name if only_initial else self.html_name,
+            value=self.value(),
+            attrs=attrs,
+            renderer=self.form.renderer,
+        )
+# 改为
+
+        return widget.render(
+            name=self.html_initial_name if only_initial else self.html_name,
+            value=self.value(),
+            attrs=attrs,
+            # renderer=self.form.renderer,
+        )
+# 问题解决
+
+# ImportError: cannot import name 'SKIP_ADMIN_LOG' from 'import_export.admin' 
+# 找到：xadmin\plugins\importexport.py
+# 将from import_export.admin import DEFAULT_FORMATS, SKIP_ADMIN_LOG, TMP_STORAGE_CLASS 大概在48行 
+# 改为
+from import_export.admin import DEFAULT_FORMATS, ImportMixin
+# 并且找到下面报错的地方
+    def get_skip_admin_log(self):
+        if self.skip_admin_log is None:
+            return SKIP_ADMIN_LOG
+        else:
+            return self.skip_admin_log
+
+    def get_tmp_storage_class(self):
+        if self.tmp_storage_class is None:
+            return TMP_STORAGE_CLASS
+        else:
+            return self.tmp_storage_class
+
+# 改为
+
+    def get_skip_admin_log(self):
+        if self.skip_admin_log is None:
+            return ImportMixin.skip_admin_log
+        else:
+            return self.skip_admin_log
+
+    def get_tmp_storage_class(self):
+        if self.tmp_storage_class is None:
+            return ImportMixin.tmp_storage_class
+        else:
+            return self.tmp_storage_class
+
+
+
+
+报错six：
+把C:\Users\41664\Envs\mxonline\Lib\site-packages\six.py复制到 
+C:\Users\41664\Envs\mxonline\Lib\site-packages\django\utils 下面
+
+
+
+问题：ImportError: cannot import name 'FieldDoesNotExist' from 'django.db.models.fields'
+
+from django.db.models.fields import FieldDoesNotExist改成下面的，
+django.core.exceptions
+
+# 在注册APP的时候 crispy_forms 要放在 xadmin下面否则会报错
+INSTALLED_APPS = [
+
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'xadmin',
+    'crispy_forms',
+    'corsheaders',
+    'rest_framework',
+
+FieldDoesNotExist找不到的错误，解决办法：
+except models.FieldDoesNotExist:    ->      except FieldDoesNotExist:
