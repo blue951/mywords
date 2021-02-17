@@ -122,3 +122,5 @@ except models.FieldDoesNotExist:    ->      except FieldDoesNotExist:
 通过源代码的方式安装xadmin：
 https://www.jianshu.com/p/139b39902eb5
 https://github.com/blue951/xadmin_bugfix    
+
+python3中的__unicode__()不起作用，用__str__()就可以
