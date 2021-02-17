@@ -24,6 +24,6 @@
     原因是需要在setting.py里配置：ALLOWED_HOSTS = ['*']            
 
 8.  配置static路径和apps路径
-9.  ORM连接数据库，配置数据库，安装python-mysql和mysqlclient
+9.  ORM连接数据库，配置数据库，进入pycharm的setting里面，找到当前项目，安装pymysql和mysqlclient，然后要生成django默认的数据表makemigrations，然后执行migrate执行sql语句。
 10  model代码创建表结构，命令生产真实的表
     makemigrations messages
