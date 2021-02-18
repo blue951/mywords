@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView
 import xadmin
+
+from users.views import login
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
+    path('', TemplateView.as_view(template_name="index.html"), name="index"),
+    # path('login/', TemplateView.as_view(template_name="login.html"), name="login")  # 不支持正则了 path('login/$', 这种写法错误
+    path('login/', login, name="login")
 ]
