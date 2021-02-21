@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'reversion',
+    'captcha',
 ]
 
 AUTH_USER_MODEL = "users.UserProfile"
@@ -140,3 +141,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),  # 这里的逗号去掉会报错
 )
+
+EMAIL_HOST = "smtp."
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "416644090@qqcom"
+EMAIL_HOST_PASSWORD = "honer777"
+EMAIL_USE_TLS = False
+EMAIL_FROM = ""   # 发件人

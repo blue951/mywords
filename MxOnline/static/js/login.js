@@ -353,9 +353,9 @@ $(function() {
     });
 
     //邮箱注册
-    $('#jsEmailRegBtn').on('click',function(){
-        register_form_submit(this,'emailReg');
-    });
+    // $('#jsEmailRegBtn').on('click',function(){
+    //     register_form_submit(this,'emailReg');
+    // });
     $("#email_register_form").keydown(function(event){
         if(event.keyCode == 13){
          $('#jsEmailRegBtn').trigger('click');
