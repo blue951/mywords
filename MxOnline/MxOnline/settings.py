@@ -26,10 +26,9 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 SECRET_KEY = '92_$+%)l%dl7z!l3b_ha7xka_wqg1wv)f++m5(qh=^!90ki2@-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True  # 改成False的话static里的所有文件找不到
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 AUTHENTICATION_BACKENDS = [
@@ -86,7 +85,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MxOnline.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -99,7 +97,6 @@ DATABASES = {
         'HOST': '127.0.0.1'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -119,7 +116,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -133,7 +129,6 @@ USE_L10N = True
 
 USE_TZ = False
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
@@ -142,9 +137,9 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),  # 这里的逗号去掉会报错
 )
 
-EMAIL_HOST = "smtp."
+EMAIL_HOST = "smtp.sina.com"
 EMAIL_PORT = 25
-EMAIL_HOST_USER = "416644090@qqcom"
-EMAIL_HOST_PASSWORD = "honer777"
+EMAIL_HOST_USER = "wtt18725632891@sina.com"
+EMAIL_HOST_PASSWORD = "aries000"
 EMAIL_USE_TLS = False
-EMAIL_FROM = ""   # 发件人
+EMAIL_FROM = "wtt18725632891@sina.com"
