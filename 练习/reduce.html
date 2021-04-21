@@ -81,5 +81,19 @@
           console.log(num);
 
     </pre>
+
+
+    <pre>
+      兼容ES5的写法：
+      function reduce(array, callback, initialValue) {//accumulator 意思是累加器
+        var accumulator = initialValue;
+        $.each(array, function() {
+          accumulator = callback(accumulator, this);
+        });
+        return accumulator;
+      }; 
+      
+      reduce([1,2,3],function(a,b){return a+b},0);
+    </pre>
 </body>
 </html>
