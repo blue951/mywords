@@ -1,0 +1,45 @@
+{
+    "users": [
+        {
+            "name": "zhangsan",
+            "phone": "13896666656",
+            "email": "1@qq.com",
+            "id": 1,
+            "age": 33,
+            "companyId": 2
+        },
+        {
+            "name": "lisi",
+            "phone": "13496666656",
+            "email": "2@qq.com",
+            "id": 2,
+            "age": 39,
+            "companyId": 1
+        },
+        {
+            "name": "dawei",
+            "phone": "13596666656",
+            "email": "3@qq.com",
+            "id": 3,
+            "age": 19,
+            "companyId": 3
+        }
+    ],
+    "companies": [
+        {
+            "id": 1,
+            "name": "apple",
+            "description": "jobs is the boss"
+        },
+        {
+            "id": 2,
+            "name": "orange",
+            "description": "the color is greatfull"
+        },
+        {
+            "id": 3,
+            "name": "bananer",
+            "description": "all the people like bananer"
+        }
+    ]
+}  

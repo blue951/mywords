@@ -1,0 +1,73 @@
+npm install -g json-server
+
+npm init --yes
+
+npm i json-server --save
+
+
+打开我们的package.json，修改一下"scripts"中的内容:
+  "scripts": {
+    "json:server": "json-server --watch db.json"
+  },
+
+
+然后创建一个db.json，在这个文件中创建我们的json数据:
+{
+    "users": [
+        {
+            "name": "dawei",
+            "phone": "dawei",
+            "email": "1@qq.com",
+            "id": 3,
+            "age": 33,
+            "companyId": 2
+        }
+    ],
+    "companies": [
+        {
+            "id": 1,
+            "name": "apple",
+            "description": "jobs is the boss"
+        },
+        {
+            "id": 2,
+            "name": "orange",
+            "description": "the color is greatfull"
+        },
+        {
+            "id": 3,
+            "name": "bananer",
+            "description": "all the people like bananer"
+        }
+    ]
+}  
+
+
+在终端中输入npm run json:server
+
+http://localhost:3000
+
+//获取所有用户信息
+http://localhost:3000/users
+//获取id为1的用户信息
+http://localhost:3000/users/1
+//获取公司的所有信息
+http://localhost:3000/companies
+//获取单个公司的信息
+http://localhost:3000/companies/1
+//获取所有公司id为3的用户
+http://localhost:3000/companies/3/users
+//根据公司名字获取信息
+http://localhost:3000/companies?name=apple
+//根据多个名字获取公司信息
+http://localhost:3000/companies?name=orange&name=bananer
+//获取一页中只有两条数据
+http://localhost:3000/companies?_page=1&_limit=2
+//升序排序  desc降序  asc升序
+http://localhost:3000/companies?_sort=name&_order=asc
+//获取年龄为30以及30以上的
+http://localhost:3000/users?age_gte=33
+//获取年龄为30到40之间的
+http://localhost:3000/users?age_gte=30&age_gte=40
+//搜索用户信息
+http://localhost:3000/users?q=d
