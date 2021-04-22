@@ -16,3 +16,7 @@ MxOnline/apps/users/__pycache__/
 MxOnline/extra_apps/xadmin/__pycache__/
 MxOnline/__pycache__/
 MxOnline/apps/utils/__pycache__/
+MxOnline/extra_apps/xadmin/migrations/__pycache__/
+MxOnline/extra_apps/xadmin/plugins/__pycache__/
+MxOnline/extra_apps/xadmin/views/__pycache__/
+MxOnline/extra_apps/xadmin/templatetags/__pycache__/
