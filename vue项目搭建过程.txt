@@ -1,0 +1,15 @@
+https://cli.vuejs.org/zh/guide/creating-a-project.html
+
+npm uninstall -g vue-cli
+npm install -g @vue/cli
+
+vue create petstore
+
+你会被提示选取一个 preset。你可以选默认的包含了基本的 Babel + ESLint 设置的 preset, vue3的版本
+
+然后选择 use npm
+
+等待安装完成。
+
+ $ cd petstore
+ $ npm run serve
