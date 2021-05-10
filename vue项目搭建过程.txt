@@ -5,7 +5,7 @@ npm install -g @vue/cli
 
 vue create petstore
 
-你会被提示选取一个 preset。你可以选默认的包含了基本的 Babel + ESLint 设置的 preset, vue3的版本
+你会被提示选取一个 preset。你可以选默认的包含了基本的 Babel + ESLint 设置的 preset, vue2的版本 【注意vue3和vue2差别较大】
 
 然后选择 use npm
 
@@ -13,3 +13,53 @@ vue create petstore
 
  $ cd petstore
  $ npm run serve
+ 
+=========================================================================== 
+ npm install vuex --save
+ Vuex 依赖 Promise (opens new window)。如果你支持的浏览器并没有实现 Promise (比如 IE)，那么你可以使用一个 polyfill 的库，例如 es6-promise：
+ npm install es6-promise --save
+ 
+=========================================================================== 
+ 安装element
+ npm i element-ui -S
+ 
+ 完整引入
+在 main.js 中写入以下内容：
+
+import Vue from 'vue';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import App from './App.vue';
+
+Vue.use(ElementUI);
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+});
+以上代码便完成了 Element 的引入。需要注意的是，样式文件需要单独引入。
+===========================================================================
+vuex本地持久化插件vuex-persistedstate
+
+vuex-persistedstate插件可以帮助我们将state中的数据持久化，让我们使用起来更方便
+
+vuex-persistedstate安装
+
+npm i -S vuex-persistedstate
+
+store/index.js中引用
+
+import persistedState from 'vuex-persistedstate'
+export default new Vuex.Store({
+    // ...
+    plugins: [persistedState()]
+})
+
+此时在按照上面的页面操作步骤，发现state的值在刷新页面之后也没有被重置了。
+===========================================================================
+路由：
+npm install vue-router
+
+===========================================================================
+===========================================================================
+=========================================================================== 
