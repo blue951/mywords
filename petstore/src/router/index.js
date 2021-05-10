@@ -15,19 +15,19 @@ import foo from "../components/Foo.vue";
 // 或者，只是一个组件配置对象。
 // 我们晚点再讨论嵌套路由。
 const routes = [
-  {
+{
     path: "/",
     //redirect重定向
     redirect: "/home",
-  },
-  {
+},
+{
     path: "/home",
     component: home,
-  },
-  {
+},
+{
     path: "/foo",
     component: foo,
-  },
+},
 ];
 
 export default new Router({ routes });

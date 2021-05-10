@@ -12,8 +12,7 @@
     
     <!--留坑，非常重要-->
     <router-view></router-view>	
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld />
   </div>
 </template>
 
@@ -24,7 +23,7 @@ export default {
   name: 'App',
   data(){
     return {
-      activeIndex: "2"
+      activeIndex: "1"
     }
   },
   components: {

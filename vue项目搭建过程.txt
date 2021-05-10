@@ -61,5 +61,23 @@ export default new Vuex.Store({
 npm install vue-router
 
 ===========================================================================
+axios
+npm install axios --save
+
+main.js
+import axios from 'axios'
+Vue.prototype.$http= axios
+
 ===========================================================================
+关闭Eslint功能，需要新建一个配置文件vue.config.js
+
+module.exports={
+	lintOnSave: false,
+    devServer: {
+        overlay: {
+            warning: false,
+            errors: false
+        }
+    },
+}
 =========================================================================== 
