@@ -1,20 +1,36 @@
-import { Home } from '../components/Home.vue';
+import Vue from "vue";
+import Router from "vue-router";
+Vue.use(Router);
+
+import home from "../components/Home.vue";
+import foo from "../components/Foo.vue";
 
 // 1. 定义 (路由) 组件。
 // 可以从其他文件 import 进来
-const Foo = { template: '<div>foo</div>' }
-const Bar = { template: '<div>bar</div>' }
+// const Foo = { template: '<div>foo</div>' }
 
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
 // 通过 Vue.extend() 创建的组件构造器，
 // 或者，只是一个组件配置对象。
 // 我们晚点再讨论嵌套路由。
-export const routes = [
-  {path: '/home',name: 'app',component: Home},
-  { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
-]
+const routes = [
+  {
+    path: "/",
+    //redirect重定向
+    redirect: "/home",
+  },
+  {
+    path: "/home",
+    component: home,
+  },
+  {
+    path: "/foo",
+    component: foo,
+  },
+];
+
+export default new Router({ routes });
 
 // 3. 创建 router 实例，然后传 `routes` 配置
 // 你还可以传别的配置参数, 不过先这么简单着吧。
