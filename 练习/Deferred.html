@@ -9,7 +9,7 @@
         $(function(){
             function getData(params){
                 return $.Deferred(function(defer){
-                    setTimeout(function(){
+                    // setTimeout(function(){
                         if(params.folder === 1){
                             defer.resolve({
                                 result: "请求成功",
@@ -27,12 +27,12 @@
                                 }
                             })
                         }
-                    },1000)
+                    // },1000)
                 })
             }
         
             
-            getData({folder: 0}).then(function(res){
+            getData({folder: 1}).then(function(res){
                 console.log(res);
             }).fail(function(err){
                 console.log(err);

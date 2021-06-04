@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>resolve用法</title>
+    <script src="./jquery-1.8.3.min.js"></script>
+</head>
+<body>
+    
+
+    <script>
+
+        $(function(){
+            // 在jQuery 1.8之前，then()只是.done().fail()写法的语法糖，两种写法是等价的。在jQuery 1.8之后，
+            // then()返回一个新的promise对象，而done()返回的是原有的deferred对象。
+
+            // 简单说，promise对象就是不能改变状态的deferred对象，也就是deferred的只读版。或者更通俗地理解成，
+            // promise是一个对将要完成的任务的承诺，排除了其他人破坏这个承诺的可能性，只能等待承诺方给出结果。
+            // 你可以通过promise对象，为原始的deferred对象添加回调函数，查询它的状态，但是无法改变它的状态，
+            // 也就是说promise对象不允许你调用resolve和reject方法。
+            
+            var defer = $.Deferred();
+            // deferred对象在状态改变时，会触发回调函数。
+            //defer和$.when(defer)都是对象，前者是deferred对象，后者是promise对象。
+            //defer对象一般会执行他的done和fail方法，promise一般会执行then方法指定的回调函数
+
+            // deferred对象是一个延迟对象，意思是函数延迟到某个点才开始执行，改变执行状态的方法有两个
+            // （成功：resolve和失败：reject）
+            console.log(defer);
+            console.log($.when(defer));
+            // console.log(Object.prototype.toString.call($.when(defer)));
+
+            defer.done(function(param){
+                console.log(param);
+            }).resolve("aaa");
+
+            $.when(defer).then(function(res){
+                // res();
+                console.log(res);
+            });
+
+            //resolve方法的参数，用来传递给回调函数。 当前传递的参数是一个匿名函数
+            defer.resolve(function(){
+                console.log(1111);
+            })
+
+        });
+
+    </script>
+</body>
+</html>
